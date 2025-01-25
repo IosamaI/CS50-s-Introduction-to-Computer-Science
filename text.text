@@ -1,0 +1,15 @@
+In ASCII (the character encoding standard), each character has a unique numeric code. For example:
+'A' has an ASCII value of 65.
+'B' has an ASCII value of 66.
+'C' has an ASCII value of 67, and so on.
+'H' has an ASCII value of 72.
+By subtracting 'A' from 'H' (i.e., 72 - 65), we get 7, which is the position of 'H' in the alphabet if we start counting from 0. This allows us to map each letter to a unique index between 0 and 25 for the 26 letters of the English alphabet.
+
+
+Why Subtract 'A'?
+When we write word[i] - 'A', we are effectively shifting the ASCII value of the letter to get a zero-based index:
+
+'A' - 'A' gives 0.
+'B' - 'A' gives 1.
+'C' - 'A' gives 2, and so on.
+This index allows us to access the POINTS array where each element corresponds to a letter's score (from A to Z). This way, the POINTS array can be accessed directly using the letter's alphabetical position, simplifying score calculations for each character in the word.
