@@ -61,9 +61,8 @@ Here's a breakdown of the repository:
   - `homepage`: A personalized homepage using HTML and CSS.
 
 ### 🎓 **Final Project**
-- **Description:** A unique project that integrates multiple concepts from the course.
-- **Technology Used:** [Insert specific tools/languages/frameworks here].
-- **Link:** [Project Link or Demo]
+- **Description:** Search for Movies
+
 
 ---
 
@@ -73,4 +72,4 @@ To view or test the projects, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/CS50-Projects.git
+   git clone https://github.com/IosamaI/CS50-s-Introduction-to-Computer-Science.git
