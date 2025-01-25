@@ -1,5 +1,9 @@
 # CS50 Projects Repository
 
+![CS50x](https://github.com/user-attachments/assets/834be078-e0d4-4e19-87c7-9b9f710c183b)
+
+
+
 Welcome to my CS50 Projects Repository! This collection showcases the projects I completed as part of [CS50’s Introduction to Computer Science](https://cs50.harvard.edu/x/). Each project represents a key concept taught in the course, ranging from foundational programming to advanced algorithms.
 
 ---
