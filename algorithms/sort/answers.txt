@@ -1,0 +1,15 @@
+sort1 uses: Bubble sort
+
+How do you know?: Because in the file of random numbers it takes O(n^2) Worst case scenario,
+and in the best scenario, the file has the numbers in order,  will go through them all at 
+once so less time O(n)
+
+sort2 uses: Merge sort 
+
+How do you know?: Because in bast case scenario and Worst scenario time complexity O(n long n)
+in sorted file and random file the time will be the same 
+
+sort3 uses: Selection sort 
+
+How do you know?: Selection Sort always takes O(n²) time because it scans the entire list to select
+ the minimum for each position. The algorithm doesn’t adapt to a pre-sorted list.

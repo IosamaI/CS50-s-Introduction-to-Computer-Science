@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block body %}
+
+<style>
+    .movie-card {
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        display: flex;
+        align-items: center;
+    }
+
+    .movie-card img {
+        max-width: 200px;
+        margin-left: 15px;
+        border-radius: 4px;
+        height: 300px;
+    }
+
+    .movie-card h3 {
+        color: #2c3e50;
+        font-size: 1.2em;
+        margin: 0;
+    }
+
+    .movie-card p {
+        font-size: 1em;
+        margin: 5px 0;
+    }
+
+    .movie-card div {
+        flex: 1;
+    }
+
+    .movie-card img {
+        max-width: 150px;
+        object-fit: cover;
+    }
+</style>
+
+<h1>Top 20 Movies</h1>
+<h3><a href="{% url 'movie_list' %}" style="text-decoration: none;">Search for Movies</a></h3>
+
+
+<div id="movieDetails"></div>
+
+<script>
+    const apiKey = '6d51ea47';  // Your OMDb API key
+
+    // Predefined list of 20 movie titles
+    const topMovies = [
+        "The Shawshank Redemption", "The Godfather", "The Dark Knight", "Schindler's List", "The Lord of the Rings: The Return of the King",
+        "Pulp Fiction", "The Good, the Bad and the Ugly", "Forrest Gump", "Inception", "Star Wars: Episode V - The Empire Strikes Back",
+        "The Lord of the Rings: The Fellowship of the Ring", "Fight Club", "The Matrix", "Goodfellas", "One Flew Over the Cuckoo's Nest",
+        "The Seven Samurai", "Se7en", "City of God", "The Silence of the Lambs", "It's a Wonderful Life"
+    ];
+
+    function fetchTopMovies() {
+        const movieDetailsDiv = document.getElementById('movieDetails');
+        movieDetailsDiv.innerHTML = "";  // Clear previous results
+
+        topMovies.forEach(title => {
+            const url = `http://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=${apiKey}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.Response === "True") {
+                        displayMovieDetails(data);
+                    } else {
+                        // Show a fallback message if movie is not found
+                        displayMovieDetails({ Title: title, Year: 'N/A', Genre: 'N/A', Director: 'N/A', Actors: 'N/A', imdbRating: 'N/A', Poster: '' });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    displayMovieDetails({ Title: title, Year: 'N/A', Genre: 'N/A', Director: 'N/A', Actors: 'N/A', imdbRating: 'N/A', Poster: '' });
+                });
+        });
+    }
+
+    function displayMovieDetails(movie) {
+        const movieDetailsDiv = document.getElementById('movieDetails');
+
+        movieDetailsDiv.innerHTML += `
+            <div class="movie-card">
+                <div>
+                    <h3>${movie.Title} (${movie.Year})</h3>
+                    <p><strong>Genre:</strong> ${movie.Genre || 'N/A'}</p>
+                    <p><strong>Director:</strong> ${movie.Director || 'N/A'}</p>
+                    <p><strong>Actors:</strong> ${movie.Actors || 'N/A'}</p>
+                    <p><strong>IMDb Rating:</strong> ${movie.imdbRating || 'N/A'}</p>
+                </div>
+                <img src="${movie.Poster || 'https://via.placeholder.com/150'}" alt="Poster of ${movie.Title}" />
+            </div>
+        `;
+    }
+
+    // Fetch the top 20 movies when the page loads
+    window.onload = fetchTopMovies;
+</script>
+
+{% endblock %}
